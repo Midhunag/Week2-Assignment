@@ -22,20 +22,30 @@ public class DuplicateLead {
 		driver.findElement(By.xpath("//div[@id = 'label']/a")).click();
 		driver.findElement(By.linkText("Leads")).click();
 		driver.findElement(By.linkText("Find Leads")).click();
-		driver.findElement(By.xpath("(//span[@class = 'x-tab-strip-text '])[3]")).click();
+		//given by mentor
+		 driver.findElement(By.xpath("//span[text()='Phone']")).click();
+		driver.findElement(By.xpath("//input[@name='phoneNumber']")).sendKeys("99");
+		driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
+		driver.findElement(By.linkText("Duplicate Lead")).click();
+		//driver.findElement(By.name("submitButton")).click();
+		/* driver.findElement(By.xpath("(//span[@class = 'x-tab-strip-text '])[3]")).click();
 		
-		driver.findElement(By.xpath("//input[@name = 'emailAddress']")).sendKeys("leelaraji93@gmail.com");
-		driver.findElement(By.xpath("(//button[@class = 'x-btn-text'])[7]")).click();
+		driver.findElement(By.xpath("//input[@name = 'emailAddress']")).sendKeys("jamroth07@gmail.com\r\n");
+		driver.findElement(By.xpath("(//button[@class = 'x-btn-text'])[7]")).click();*/
 		
 	//	WebElement name = driver.findElement(By.linkText("Leelavathi")).click();
 	//	String capturedName = name.getText();
 	//	name.click();
 		
-		 String capturedName = driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-firstName']/a")).getText();
-		 driver.findElement(By.xpath("(//a[@class='linktext'])[6]")).click();
+		 WebElement capturedName1 = driver.findElement(By.xpath("//td[@class='x-grid3-col x-grid3-cell x-grid3-td-firstName ']//a"));
+		 String capturedName = capturedName1.getText();
+		// driver.findElement(By.xpath("(//a[@class='linktext'])[6]")).click();
+		driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
 		 Thread.sleep(1000);
 		
-		driver.findElement(By.linkText("Duplicate Lead")).click();
+	driver.findElement(By.linkText("Duplicate Lead")).click();
 		String title = driver.getTitle();
 		String title1 = "Duplicate Lead | opentaps CRM";
 		
@@ -46,9 +56,10 @@ public class DuplicateLead {
 		else {
 			System.out.println("Title is different");
 		}
-		
-		driver.findElement(By.className("smallSubmit")).click();
-		WebElement name1 = driver.findElement(By.xpath("//div[@id=\"_G3437__body\"]//span[@id='viewLead_firstName_sp']"));
+		driver.findElement(By.xpath("//input[@class='smallSubmit']")).click();
+		//driver.findElement(By.xpath("(//td[@class='label'])[40]/following-sibling::td/input")).click();
+		//driver.findElement(By.className("smallSubmit")).click();
+		WebElement name1 = driver.findElement(By.xpath("//span[@id='viewLead_firstName_sp']"));
 		String duplicateName = name1.getText();
 		
 		if (capturedName.equals(duplicateName)) {
@@ -59,7 +70,7 @@ public class DuplicateLead {
 		{
 			System.out.println("The names are not same");
 	}
-		driver.close();
+		//driver.close();
 	}
 
 }
